@@ -1,9 +1,4 @@
 # My personnal neovim configuration
-### Installation
-clone the repository in .config
-```
-git clone https://github.com/dirdr/nvim & mv nvim ~/.config
-```
 **don't forget** to install ripgrep and fd find. otherwise live grep will not work.\
 run:
 ```
