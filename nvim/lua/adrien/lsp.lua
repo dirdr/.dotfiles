@@ -1,7 +1,7 @@
 local servers = {
     ["cssls"] = {},
     ["html"] = {},
-    ["sumneko_lua"] = { Lua = { diagnostics = { globals = { "vim" } } } },
+    ["lua_ls"] = { Lua = { diagnostics = { globals = { "vim" } } } },
     ["tsserver"] = {},
     ["pyright"] = {},
     ["bashls"] = {},

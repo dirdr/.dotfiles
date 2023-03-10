@@ -17,6 +17,10 @@ bind - split-window -v
 unbind r
 bind r source-file ~/.tmux.conf
 
+# to unset time delay for nvim
+set -g escape-time 10
+set -sg escape-time 10
+
 bind -r j resize-pane -D 5
 bind -r k resize-pane -U 5
 bind -r l resize-pane -R 5
