@@ -8,6 +8,9 @@ set -g prefix C-a
 unbind C-b
 bind-key C-a send-prefix
 
+set -g mouse on
+set -ga terminal-overrides ',*256color*:smcup@:rmcup@'
+
 unbind %
 bind | split-window -h 
 
@@ -15,7 +18,7 @@ unbind '"'
 bind - split-window -v
 
 unbind r
-bind r source-file ~/.tmux.conf
+bind r source-file ~/.config/tmux
 
 # to unset time delay for nvim
 set -g escape-time 10

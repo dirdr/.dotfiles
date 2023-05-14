@@ -40,4 +40,3 @@ mason_null_ls.setup({
 })
 
 null_ls.setup()
-require("mason-null-ls").setup_handlers() -- If `automatic_setup` is true.
