@@ -165,6 +165,48 @@
           ]
         }
       ]
+    },
+    {
+      "description": "remap right option + 0 to @",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "0",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "non_us_backslash"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "remap right option + 3 to #",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "3",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "non_us_backslash",
+                "modifiers": {
+
+                            }
+            }
+          ]
+        }
+      ]
     }
+f ]
   ]
 }

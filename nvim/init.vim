@@ -1,9 +1,10 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 "colorscheme
 Plug 'gruvbox-community/gruvbox'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'sainnhe/gruvbox-material'
 Plug 'eddyekofo94/gruvbox-flat.nvim'
+Plug 'bluz71/vim-nightfly-colors'
+Plug 'sainnhe/gruvbox-material'
 " lsp
 Plug 'williamboman/mason.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -58,8 +59,6 @@ Plug 'goolord/alpha-nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " indent blank line
 Plug 'lukas-reineke/indent-blankline.nvim'
-" colorizer 
-Plug 'NvChad/nvim-colorizer.lua'
 " vim be good - training vim movement
 Plug 'ThePrimeagen/vim-be-good'
 " tmux navigator 
@@ -67,5 +66,5 @@ Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 lua require("adrien/init")
 set termguicolors
-let g:gruvbox_contrast_dark = "hard"
-colorscheme gruvbox-flat
+autocmd bufwritepost ~/.config/tmux execute ':!tmux source-file %'
+colorscheme gruvbox-material

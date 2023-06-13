@@ -205,27 +205,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "remap right option + 0 to @",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "0",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "non_us_backslash"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },

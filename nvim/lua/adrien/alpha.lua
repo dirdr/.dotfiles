@@ -15,7 +15,7 @@ local icons = require("adrien.icons")
 
 dashboard.section.buttons.val = {
     button("f", icons.documents.Files .. " Find file", ":Telescope find_files <CR>"),
-    button("t", icons.ui.List .. " Find text", ":Telescope live_grep <CR>"),
+    button("t", icons.ui.List .. " Live grep", ":Telescope live_grep <CR>"),
 }
 
 alpha.setup(dashboard.opts)

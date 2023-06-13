@@ -27,16 +27,27 @@ local servers = {
     "bashls",
     "clangd",
     "rust_analyzer",
+    "rustfmt",
+    "jsonls",
+    "prettier",
+    "stylua",
 }
 
 mason.setup()
+
 mason_lspconfig.setup({
     ensured_installed = servers,
     automatic_installation = true,
 })
 
 mason_null_ls.setup({
-    automatic_setup = true,
+    ensured_installed = {
+        "rustfmt",
+        "stylua",
+        "prettier",
+    },
+    automatic_installation = false,
+    handlers = {},
 })
 
 null_ls.setup()

@@ -1,15 +1,16 @@
-local status_nightfox, nightfox = pcall(require, "nightfox")
-if not status_nightfox then
-    return
-end
--- comments and keywords will be showed as italic
-nightfox.setup({
-    options = {
-        styles = {
-            comments = "italic",
-            keywords = "italic",
-        },
-    },
-})
-
 vim.g.gruvbox_flat_style = "dark"
+
+require("tokyonight").setup({
+    style = "dark",
+    styles = {
+        -- Style to be applied to different syntax groups
+        -- Value is any valid attr-list value for `:help nvim_set_hl`
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = {},
+        variables = {},
+        -- Background styles. Can be "dark", "transparent" or "normal"
+        sidebars = "dark", -- style for sidebars, see below
+        floats = "dark",   -- style for floating windows
+    }
+})
