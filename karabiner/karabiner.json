@@ -16,244 +16,7 @@
                     "basic.to_if_held_down_threshold_milliseconds": 500,
                     "mouse_motion_to_scroll.speed": 100
                 },
-                "rules": [
-                    {
-                        "description": "remap the - into =",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "equal_sign"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "slash"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the _ into +",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "equal_sign",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "slash",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the = into !",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "slash"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "8"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the 8 into _",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "8"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "equal_sign",
-                                        "modifiers": [
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the 6 into -",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "6"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "equal_sign"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the ‘ + left shift into {",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "4",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "5",
-                                        "modifiers": [
-                                            "right_option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the ( + left shift into [",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "5",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "5",
-                                        "modifiers": [
-                                            "right_option",
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the ) + left shift into ]",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "hyphen",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "hyphen",
-                                        "modifiers": [
-                                            "right_option",
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap the = + right option into }",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "equal_sign",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "hyphen",
-                                        "modifiers": [
-                                            "right_option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap right option + 0 to @",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "0",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "non_us_backslash"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "remap right option + 3 to #",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "non_us_backslash",
-                                        "modifiers": {
-                                            "mandatory": [
-                                                "left_shift"
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
+                "rules": []
             },
             "devices": [
                 {
@@ -301,9 +64,19 @@
                                     "key_code": "left_control"
                                 }
                             ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_option"
+                                }
+                            ]
                         }
                     ],
-                    "treat_as_built_in_keyboard": true
+                    "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,

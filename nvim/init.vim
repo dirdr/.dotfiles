@@ -63,6 +63,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 " tmux navigator 
 Plug 'christoomey/vim-tmux-navigator'
+" vim text
+Plug 'lervag/vimtex'
 call plug#end()
 lua require("adrien/init")
 set termguicolors

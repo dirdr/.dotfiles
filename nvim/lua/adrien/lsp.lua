@@ -7,6 +7,7 @@ local servers = {
     ["bashls"] = {},
     ["clangd"] = {},
     ["marksman"] = {},
+    ["texlab"] = {}
 }
 
 local status_lspconfig, lspconfig = pcall(require, "lspconfig")
