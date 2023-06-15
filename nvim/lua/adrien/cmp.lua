@@ -15,34 +15,11 @@ local check_backspace = function()
     return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
-local kind_icons = {
-    Text = "",
-    Method = "m",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
-}
-
+local status_icons, icon = pcall(require, "adrien.icons")
+if not status_icons then
+    print("icon import error")
+    return
+end
 
 cmp.setup({
     snippet = {
@@ -97,7 +74,7 @@ cmp.setup({
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind icons
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            vim_item.kind = string.format("%s", icon.kind[vim_item.kind])
             vim_item.menu = ({
                 nvim_lsp = "[LSP]",
                 luasnip = "[Snippet]",

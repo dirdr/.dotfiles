@@ -226,32 +226,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "remap right option + 3 to #",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "3",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "right_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "non_us_backslash",
-                                        "modifiers": {
-                                            "mandatory": [
-                                                "left_shift"
-                                            ]
-                                        }
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
@@ -303,7 +277,7 @@
                             ]
                         }
                     ],
-                    "treat_as_built_in_keyboard": true
+                    "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
