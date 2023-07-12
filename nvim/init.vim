@@ -45,8 +45,6 @@ Plug 'moll/vim-bbye'
 Plug 'windwp/nvim-ts-autotag'
 " trouble 
 Plug 'folke/trouble.nvim'
-" neogit 
-Plug 'TimUntersberger/neogit'
 " toggleterm
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 " DAP
@@ -65,6 +63,8 @@ Plug 'ThePrimeagen/vim-be-good'
 Plug 'christoomey/vim-tmux-navigator'
 " vim text
 Plug 'lervag/vimtex'
+" Emmet
+Plug 'mattn/emmet-vim'
 call plug#end()
 lua require("adrien/init")
 set termguicolors

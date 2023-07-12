@@ -7,7 +7,8 @@ local servers = {
     ["bashls"] = {},
     ["clangd"] = {},
     ["marksman"] = {},
-    ["texlab"] = {}
+    ["texlab"] = {},
+    ["java_language_server"] = {},
 }
 
 local status_lspconfig, lspconfig = pcall(require, "lspconfig")
@@ -32,7 +33,7 @@ local capabilities = cmpLsp.default_capabilities(vim.lsp.protocol.make_client_ca
 
 local on_attach = function(client, bufnr)
     local opts = { noremap = true, silent = true }
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "f", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts) -- to format with null ls source
@@ -53,7 +54,7 @@ rust_tools.setup({
         on_attach = function(_, bufnr)
             local opts = { noremap = true, silent = true }
             -- Hover actions
-            vim.keymap.set("n", "<C-space", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+            vim.keymap.set("n", "<Leader>h", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
             -- Code action groups
             vim.keymap.set("n", "<Leader>a", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
             vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts) -- to format with null ls source
