@@ -51,7 +51,8 @@ end
 -- so don't do that manually, as it causes conflicts.
 rust_tools.setup({
     server = {
-        on_attach = function(_, bufnr)
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
             local opts = { noremap = true, silent = true }
             -- Hover actions
             vim.keymap.set("n", "<Leader>h", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
@@ -60,5 +61,10 @@ rust_tools.setup({
             vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts) -- to format with null ls source
             vim.api.nvim_buf_set_keymap(bufnr, "n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
         end,
+    },
+    tools = {
+        hover_actions = {
+            auto_focus = true,
+        },
     },
 })

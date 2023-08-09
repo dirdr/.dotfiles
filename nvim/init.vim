@@ -5,6 +5,7 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'bluz71/vim-nightfly-colors'
 Plug 'sainnhe/gruvbox-material'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 " lsp
 Plug 'williamboman/mason.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
