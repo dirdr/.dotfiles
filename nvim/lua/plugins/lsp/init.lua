@@ -1,35 +1,77 @@
 local function lspconfig_setup()
-  local servers = { -- don't include rustanalyzer because of further integration with rsut tools
-    ["cssls"] = {},
-    ["html"] = {},
-    ["lua_ls"] = { Lua = { diagnostics = { globals = { "vim" } } } },
-    ["tsserver"] = {},
-    ["pyright"] = {},
-    ["bashls"] = {},
-    ["clangd"] = {},
-    ["marksman"] = {},
-    ["texlab"] = {},
-    ["java_language_server"] = {},
-  }
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local bufnr = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-  local capabilities = cmpLsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local opts = { buffer = bufnr }
 
-  local on_attach = function(client, bufnr)
-    local opts = { noremap = true, silent = true }
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "f", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+      vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, opts)
+      vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
+      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+      vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)
+
+      -- auto show diagnostic when cursor hold
+      vim.api.nvim_create_autocmd("CursorHold", {
+        buffer = bufnr,
+        callback = function()
+          local float_opts = {
+            focusable = false,
+            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+          }
+
+          if not vim.b.diagnostics_pos then
+            vim.b.diagnostics_pos = { nil, nil }
+          end
+
+          local cursor_pos = vim.api.nvim_win_get_cursor(0)
+          if
+            (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
+            and #vim.diagnostic.get() > 0
+          then
+            vim.diagnostic.open_float(nil, float_opts)
+          end
+
+          vim.b.diagnostics_pos = cursor_pos
+        end,
+      })
+    end,
+  })
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+  local setup_server = function(server, config)
+    if not config then
+      return
+    end
+
+    if type(config) ~= "table" then
+      config = {}
+    end
+
+    config = vim.tbl_deep_extend("force", {
+      capabilities = capabilities,
+    }, config)
+
+    require("lspconfig")[server].setup(config)
   end
 
-  for server, opts in pairs(servers) do
-    require("lspconfig")[server].setup({
-      capabilities = capabilities,
-      settings = opts,
-      on_attach = on_attach,
-    })
+  local servers = require("plugins.lsp.language_servers")
+  for server, setting in pairs(servers) do
+    if setting.disabled then
+      goto continue
+    end
+
+    if setting.config ~= nil then
+      setup_server(server, setting.config)
+    else
+      setup_server(server, {})
+    end
+
+    ::continue::
   end
 end
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -45,15 +87,22 @@ return {
   {
     "simrat39/rust-tools.nvim",
     config = function()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
       require("rust-tools").setup({
         server = {
           capabilities = capabilities,
           on_attach = function(client, bufnr)
             local opts = { noremap = true, silent = true }
-            -- Hover actions
-            vim.keymap.set("n", "<Leader>h", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+            -- Hover actionf
+            vim.keymap.set("n", "<Leader>h", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
             -- Code action groups
-            vim.keymap.set("n", "<Leader>a", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+            vim.keymap.set(
+              "n",
+              "<Leader>a",
+              require("rust_tools").code_action_group.code_action_group,
+              { buffer = bufnr }
+            )
             vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts) -- to format with null ls source
             vim.api.nvim_buf_set_keymap(bufnr, "n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
           end,

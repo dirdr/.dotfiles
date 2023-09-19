@@ -1,4 +1,5 @@
 return {
+  -- Completion
   {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
@@ -38,14 +39,16 @@ return {
           })
         end,
       },
-    },
-    {
-      "onsails/lspkind-nvim",
-      config = function()
-        require("lspkind").init({
-          preset = "codicons",
-        })
-      end,
+
+      -- vscode-like pictograms
+      {
+        "onsails/lspkind-nvim",
+        config = function()
+          require("lspkind").init({
+            preset = "codicons",
+          })
+        end,
+      },
     },
     config = function()
       local cmp = require("cmp")
