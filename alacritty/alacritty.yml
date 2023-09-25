@@ -53,15 +53,15 @@ colors:
 
 font:
   normal:
-    family: Hack Nerd Font
+    family: FiraCode Nerd Font
     style: Regular
 
   bold:
-    family: Hack Nerd Font
+    family: FiraCode Nerd Font
     style: Bold
 
   italic:
-    family: Hack Nerd Font
+    family: JetBrains Mono
     style: Italic
 
   size: 14.0

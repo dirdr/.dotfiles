@@ -39,12 +39,38 @@ return {
           })
         end,
       },
-
       -- vscode-like pictograms
       {
         "onsails/lspkind-nvim",
         config = function()
           require("lspkind").init({
+            symbol_map = {
+              Text = "󰉿",
+              Method = "󰆧",
+              Function = "󰊕",
+              Constructor = "",
+              Field = "󰜢",
+              Variable = "󰀫",
+              Class = "󰠱",
+              Interface = "",
+              Module = "",
+              Property = "󰜢",
+              Unit = "󰑭",
+              Value = "󰎠",
+              Enum = "",
+              Keyword = "󰌋",
+              Snippet = "",
+              Color = "󰏘",
+              File = "󰈙",
+              Reference = "󰈇",
+              Folder = "󰉋",
+              EnumMember = "",
+              Constant = "󰏿",
+              Struct = "󰙅",
+              Event = "",
+              Operator = "󰆕",
+              TypeParameter = "",
+            },
             preset = "codicons",
           })
         end,
@@ -117,6 +143,7 @@ return {
           { name = "luasnip" },
           { name = "path" },
           { name = "buffer", keyword_length = 5 }, -- show buffer's completion only if type more then keyword_length
+          { name = "emoji" },
         }),
         window = {
           -- completion = {
@@ -136,7 +163,7 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = lspkind.cmp_format({
-            mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+            mode = "text_symbol", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             -- menu = ({ -- showing type in menu
             --   nvim_lsp = "(LSP)",

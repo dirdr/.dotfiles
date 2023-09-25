@@ -1,4 +1,5 @@
 local default_config_dir = vim.fn.stdpath("config") .. "/lua/plugins/formatting/configs/"
+print(default_config_dir)
 
 -- we need to wrap to_register to a function, since null-ls will loaded after
 -- See https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
@@ -52,6 +53,19 @@ return {
         extra_args = {
           "--config-path",
           require("util").config_finder({ "stylua.toml", ".stylua.toml" }, default_config_dir),
+        },
+      })
+    end,
+  },
+  clang_format = {
+    name = "clang-format",
+    disabled = false,
+    to_register_wrap = function()
+      return require("null-ls").builtins.formatting.clang_format.with({
+        filetypes = { "cpp", "h" },
+        extra_args = {
+          "--config-path",
+          require("util").config_finder({ ".clang-format" }, default_config_dir),
         },
       })
     end,

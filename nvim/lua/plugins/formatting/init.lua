@@ -14,7 +14,7 @@ local formatting_buffer = function()
       if have_nls then
         return client.name == "null-ls"
       end
-      return client.name ~= "null-ls"
+      return false
     end,
   })
 end

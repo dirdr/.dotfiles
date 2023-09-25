@@ -1,6 +1,6 @@
 return {
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     lazy = true,
   },
   {
@@ -39,7 +39,7 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
     },
     cmd = "Neotree",
     config = function()
@@ -82,7 +82,7 @@ return {
   },
   {
     "goolord/alpha-nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local dashboard = require("alpha.themes.dashboard")
       dashboard.section.buttons.val = {
@@ -103,5 +103,26 @@ return {
     opts = {
       -- options
     },
+  },
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {},
+  },
+  {
+    "akinsho/bufferline.nvim",
+    event = "BufEnter",
+    version = "v1.*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    setup = function()
+      require("bufferline").setup({})
+    end,
   },
 }
