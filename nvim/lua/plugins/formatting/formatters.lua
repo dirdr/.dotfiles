@@ -1,5 +1,4 @@
 local default_config_dir = vim.fn.stdpath("config") .. "/lua/plugins/formatting/configs/"
-print(default_config_dir)
 
 -- we need to wrap to_register to a function, since null-ls will loaded after
 -- See https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md

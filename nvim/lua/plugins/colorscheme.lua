@@ -3,6 +3,7 @@ return {
     "sainnhe/gruvbox-material",
     lazy = false,
     -- config = function()
+    --   vim.g.gruvbox_material_enable_italic = 1
     --   vim.cmd.colorscheme("gruvbox-material")
     -- end,
   },
@@ -23,9 +24,10 @@ return {
       vim.cmd.colorscheme("catppuccin-mocha")
       require("catppuccin").setup({
         flavour = "mocha",
-        style = {
+        styles = {
           comments = { "italic" },
-          functions = { "italic" },
+          conditionals = { "italic" },
+          types = { "italic" },
         },
       })
     end,

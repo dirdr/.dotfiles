@@ -73,10 +73,10 @@ return {
         group = vim.api.nvim_create_augroup("RelinkIndentBlanklineHightLightGroup", { clear = true }),
         desc = "Relink IndentBlankline Highlight Group",
       })
-      require("indent_blankline").setup({
-        char = "",
-        context_char = "│",
-        show_current_context = true,
+      require("ibl").setup({
+        scope = {
+          enabled = false,
+        },
       })
     end,
   },
@@ -116,13 +116,21 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
-    event = "BufEnter",
-    version = "v1.*",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    setup = function()
-      require("bufferline").setup({})
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("bufferline").setup()
     end,
+  },
+  {
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true,
+      })
+    end,
+  },
+  {
+    "eandrju/cellular-automaton.nvim",
   },
 }

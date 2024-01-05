@@ -43,9 +43,12 @@ keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap.set("t", "<Esc>", "<C-\\><C-n>", term_opts)
 
 -- Telescope --
-keymap.set("n", "<leader>ff",
-	"<cmd>lua require('telescope.builtin').find_files( {previewer = false, no_ignore = false, hidden = false,} )<cr>",
-	opts)
+keymap.set(
+  "n",
+  "<leader>ff",
+  "<cmd>lua require('telescope.builtin').find_files( {previewer = false, no_ignore = false, hidden = false,} )<cr>",
+  opts
+)
 keymap.set("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 keymap.set("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 keymap.set("n", "<leader>fc", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", opts)
@@ -57,3 +60,25 @@ keymap.set("n", "<C-d>", "<C-d>zz", opts)
 keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "n", "nzzzv", opts)
 keymap.set("n", "N", "Nzzzv", opts)
+
+-- Dapui
+keymap.set("n", "<leader>du", "<cmd>lua require('dapui').toggle({})<cr>", opts)
+keymap.set("n", "<leader>de", "<cmd>lua require('dapui').eval()<cr>", opts)
+
+-- Dap
+keymap.set("n", "<leader>dB", "require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))", opts)
+keymap.set("n", "<leader>de", "require('dap').toggle_breakpoint()", opts)
+keymap.set("n", "<leader>dl", "require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))", opts)
+keymap.set("n", "<leader>dC", "require('dap').run_to_cursor()", opts)
+keymap.set("n", "<leader>dg", "require('dap').goto_()", opts)
+keymap.set("n", "<leader>di", "require('dap').step_into()", opts)
+keymap.set("n", "<leader>dk", "require('dap').up()", opts)
+keymap.set("n", "<leader>dj", "require('dap').down()", opts)
+keymap.set("n", "<leader>do", "require('dap').step_out()", opts)
+keymap.set("n", "<leader>dO", "require('dap').step_over()", opts)
+keymap.set("n", "<leader>dp", "require('dap').pause()", opts)
+keymap.set("n", "<leader>dp", "require('dap').pause()", opts)
+keymap.set("n", "<leader>dr", "require('dap').repl.toggle()", opts)
+keymap.set("n", "<leader>ds", "require('dap').session()", opts)
+keymap.set("n", "<leader>dt", "require('dap').terminate()", opts)
+keymap.set("n", "<leader>dR", "require('dap').clear_breakpoints()", opts)

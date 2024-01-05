@@ -14,6 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+vim.opt.termguicolors = true
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {})
 vim.api.nvim_command("autocmd bufwritepost ~/.config/tmux execute ':!tmux source-file %'")

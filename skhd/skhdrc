@@ -1,65 +1,90 @@
-# Changing Window Focus
-alt - j : yabai -m window --focus south
-alt - k : yabai -m window --focus north
-alt - h : yabai -m window --focus west
-alt - l : yabai -m window --focus east
+# change window focus
+lalt - j : yabai -m window --focus south
+lalt - k : yabai -m window --focus north
+lalt - h : yabai -m window --focus west
+lalt - l : yabai -m window --focus east
 
-alt - p : yabai -m window --focus next
+# swap window
+shift + lalt - j : yabai -m window --swap south
+shift + lalt - k : yabai -m window --swap north
+shift + lalt - h : yabai -m window --swap west
+shift + lalt - l : yabai -m window --swap east
+
+# toggle window float and center
+lalt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# move window
+shift + cmd - j : yabai -m window --warp south
+shift + cmd  - k : yabai -m window --warp north
+shift + cmd - h : yabai -m window --warp west
+shift + cmd - l : yabai -m window --warp east
+
+# close a window
+lalt - x : yabai -m window --close
+
+# minimize a window
+lalt - m : yabai -m window --minimize
 
 # change focus between external displays (left and right)
-alt - s: yabai -m display --focus west
-alt - s: yabai -m display --focus east
+lalt - s: yabai -m display --focus west
+lalt - s: yabai -m display --focus east
 
 # rotate layout clockwise
-shift + alt - r : tabai -m space --rotate 270
+lalt - r : yabai -m space --rotate 270
 
 # flip along x-axis
-alt - y : yabai -m space --mirror y-axis
+lalt - y : yabai -m space --mirror y-axis
 
 # flip along x-axis
-alt - x : yabai -m space --mirror x-axis
+lalt - x : yabai -m space --mirror x-axis
 
-# toggle window flot
-alt - t : tabai -m window --toggle float --grid 4:4:1:1:2:2
 
 # maximize a window
-alt - f : yabai -m window --toggle zoom-fullscreen
-
+lalt - f : yabai -m window --toggle zoom-fullscreen
 
 # rebalance out tree of windows 
-alt - e : yabai -n space --balance
+lalt - e : yabai -m space --balance
 
-# moving windows
-shift + alt - j : yabai -m window --swap south
-shift + alt - k : yabai -m window --swap north
-shift + alt - h : yabai -m window --swap west
-shift + alt - l : yabai -m window --swap east
 
 # move window to display left and right
-shift + alt - s : yabai -m window --display west; yabai -m display --focus west;
-shift + alt - g : yabai -m window --display east; yabai -m display --focus east;
+shift + lalt - s : yabai -m window --display west; yabai -m display --focus west;
+shift + lalt - g : yabai -m window --display east; yabai -m display --focus east;
+
+# create a new space and follow focus
+lalt - n : yabai -m space --create && \
+                  index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
+                  yabai -m space --focus "${index}"
+
+# create a new space, move window and follow focus
+shift + lalt - n : yabai -m space --create && \
+                  index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
+                  yabai -m window --space "${index}" && \
+                  yabai -m space --focus "${index}"
+
+# moves focus between spaces 
+lalt + cmd - 1 : yabai -m space --focus 1
+lalt + cmd - 2 : yabai -m space --focus 2
+lalt + cmd - 3 : yabai -m space --focus 3
+lalt + cmd - 3 : yabai -m space --focus 4
+lalt + cmd - 3 : yabai -m space --focus 5
+lalt + cmd - 3 : yabai -m space --focus 6
+lalt + cmd - 3 : yabai -m space --focus 7
+lalt + cmd - 3 : yabai -m space --focus 8
+lalt + cmd - 3 : yabai -m space --focus 9
 
 # move window to previous and next space
-shift + alt - 1: yabai -m window --space 1;
-shift + alt - 2: yabai -m window --space 2;
-shift + alt - 3: yabai -m window --space 3;
-shift + alt - 4: yabai -m window --space 4;
-shift + alt - 5: yabai -m window --space 5;
-shift + alt - 6: yabai -m window --space 6;
-shift + alt - 7: yabai -m window --space 7;
-
-# stop yabai
-ctrl + alt - q : yabai --restart-service
-
+lalt + shift - 1: yabai -m window --space 1;
+lalt + shift - 2: yabai -m window --space 2;
+lalt + shift - 3: yabai -m window --space 3;
+lalt + shift - 4: yabai -m window --space 4;
+lalt + shift - 5: yabai -m window --space 5;
+lalt + shift - 6: yabai -m window --space 6;
+lalt + shift - 7: yabai -m window --space 7;
 # applications launch
-# Lancer Alacritty avec CMD + A
-cmd + alt - a : open -na "Alacritty"
+cmd + lalt - a : open -na "Alacritty"
 
-# Lancer ARC Browser avec CMD + B
-cmd + alt - b : open -na "Arc"
+cmd + lalt - b : open -na "Arc"
 
-# Lancer Todoist avec CMD + T
-cmd + alt - t : open -na "Todoist"
+cmd + lalt - t : open -na "Todoist"
 
-# Lancer Notion avec CMD + N
-cmd + alt - n : open -na "Notion"
+cmd + lalt - n : open -na "Notion"

@@ -44,4 +44,22 @@ return {
       })
     end,
   },
+  {
+    "jghauser/mkdir.nvim",
+  },
+
+  {
+    "ThePrimeagen/vim-be-good",
+  },
+  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+    end,
+  },
 }

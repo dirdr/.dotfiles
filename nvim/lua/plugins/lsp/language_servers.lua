@@ -36,6 +36,9 @@ return {
   tailwindcss = {
     name = "tailwindcss-language-server",
   },
+  texlab = {
+    name = "texlab",
+  },
   lua_ls = {
     name = "lua-language-server",
     config = {
