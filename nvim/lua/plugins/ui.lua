@@ -130,7 +130,5 @@ return {
       })
     end,
   },
-  {
-    "eandrju/cellular-automaton.nvim",
-  },
+  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 }

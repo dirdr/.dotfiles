@@ -5,6 +5,7 @@ return {
   },
   {
     "lervag/vimtex",
+    lazy = true,
     config = function()
       vim.cmd("filetype plugin indent on")
       vim.cmd("syntax enable")

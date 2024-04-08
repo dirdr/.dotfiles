@@ -1,11 +1,11 @@
 return {
   {
     "sainnhe/gruvbox-material",
-    lazy = false,
-    -- config = function()
-    --   vim.g.gruvbox_material_enable_italic = 1
-    --   vim.cmd.colorscheme("gruvbox-material")
-    -- end,
+    lazy = true,
+    config = function()
+      vim.g.gruvbox_material_enable_italic = 1
+      -- vim.cmd.colorscheme("gruvbox-material")
+    end,
   },
   {
     "projekt0n/caret.nvim",
@@ -14,14 +14,33 @@ return {
   {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
+    config = function()
+      require("gruvbox").setup({})
+      -- vim.cmd.colorscheme("gruvbox")
+    end,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    config = function()
+      require("kanagawa").setup({
+        keywordStyle = {
+          italic = true,
+        },
+        statementStyle = {
+          bold = false,
+        },
+      })
+      vim.cmd.colorscheme("kanagawa-wave")
+    end,
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("catppuccin-mocha")
+      --vim.cmd.colorscheme("catppuccin-mocha")
       require("catppuccin").setup({
         flavour = "mocha",
         styles = {
