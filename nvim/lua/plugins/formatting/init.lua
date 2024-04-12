@@ -5,14 +5,14 @@ local formatting_buffer = function()
   end
 
   local ft = vim.bo[buf].filetype
-  local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+  local have_nls = #require("none-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
 
   vim.lsp.buf.format({
     bufnr = buf,
     timeout_ms = 5000,
     filter = function(client)
       if have_nls then
-        return client.name == "null-ls"
+        return client.name == "none-ls"
       end
       return false
     end,
@@ -53,6 +53,6 @@ for formatter, setting in pairs(formatters) do
 end
 
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "nvimtools/none-ls.nvim",
   opts = sources, -- passed to the parent spec's config()
 }

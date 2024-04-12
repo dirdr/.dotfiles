@@ -8,7 +8,7 @@ return {
     name = "rustfmt", -- for mason installer
     disabled = false,
     to_register_wrap = function()
-      return require("null-ls").builtins.formatting.rustfmt.with({
+      return require("none-ls").builtins.formatting.rustfmt.with({
         filetypes = { "rust" },
       })
     end,
@@ -17,7 +17,7 @@ return {
     name = "prettier",
     disabled = false,
     to_register_wrap = function()
-      return require("null-ls").builtins.formatting.prettier.with({
+      return require("none-ls").builtins.formatting.prettier.with({
         filetypes = { "html", "css", "scss" },
         extra_args = { "--print-width", "120" },
       })
@@ -27,7 +27,7 @@ return {
     name = "dprint",
     disabled = false,
     to_register_wrap = function()
-      return require("null-ls").builtins.formatting.dprint.with({
+      return require("none-ls").builtins.formatting.dprint.with({
         filetypes = {
           "javascriptreact",
           "typescript",
@@ -47,7 +47,7 @@ return {
     name = "stylua",
     disabled = false,
     to_register_wrap = function()
-      return require("null-ls").builtins.formatting.stylua.with({
+      return require("none-ls").builtins.formatting.stylua.with({
         filetypes = { "lua" },
         extra_args = {
           "--config-path",
@@ -60,7 +60,7 @@ return {
     name = "clang-format",
     disabled = false,
     to_register_wrap = function()
-      return require("null-ls").builtins.formatting.clang_format.with({
+      return require("none-ls").builtins.formatting.clang_format.with({
         filetypes = { "cpp", "h" },
         extra_args = {
           "--config-path",
