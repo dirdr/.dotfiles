@@ -5,7 +5,7 @@ return {
   pylint = {
     name = "pylint", -- for mason installer
     to_register_wrap = function()
-      return require("nvimtools/none-ls.nvim").register(require("none-ls").builtins.diagnostics.pylint.with({
+      return require("null-ls").register(require("null-ls").builtins.diagnostics.pylint.with({
         filetypes = { "python" },
         extra_args = {
           "--rcfile",
@@ -14,29 +14,29 @@ return {
       }))
     end,
   },
-  eslint = {
-    name = "eslint_d",
-    to_register_wrap = function()
-      return require("nvimtools/none-ls.nvim").register(require("none-ls").builtins.diagnostics.eslint_d.with({
-        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-        command = "eslint_d",
-        args = { "--stdio", "--format", "json" },
-        parseJson = {
-          errorsRoot = "[0].messages",
-          line = "line",
-          column = "column",
-          endLine = "endLine",
-          endColumn = "endColumn",
-          message = "${message} [${ruleId}]",
-          security = "severity",
-        },
-        severity_map = {
-          [2] = "error",
-          [1] = "warning",
-        },
-        sourceName = "eslint_d",
-        debounce = 100,
-      }))
-    end,
-  },
+  -- eslint = {
+  --   name = "eslint_d",
+  --   to_register_wrap = function()
+  --     return require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
+  --       filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  --       command = "eslint_d",
+  --       args = { "--stdio", "--format", "json" },
+  --       parseJson = {
+  --         errorsRoot = "[0].messages",
+  --         line = "line",
+  --         column = "column",
+  --         endLine = "endLine",
+  --         endColumn = "endColumn",
+  --         message = "${message} [${ruleId}]",
+  --         security = "severity",
+  --       },
+  --       severity_map = {
+  --         [2] = "error",
+  --         [1] = "warning",
+  --       },
+  --       sourceName = "eslint_d",
+  --       debounce = 100,
+  --     }))
+  --   end,
+  -- },
 }

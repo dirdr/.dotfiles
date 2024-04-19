@@ -20,9 +20,22 @@ return {
   },
   clangd = {
     name = "clangd",
-  },
-  gopls = {
-    name = "gopls",
+    config = {
+      -- override defaults lsp configuration commands
+      -- [source](https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua).
+      cmd = {
+        "clangd",
+        -- allow indexing of files in the project
+        "--background-index",
+        -- enables diagnostics from clangd tidy
+        "--clang-tidy",
+        -- enable rename operations affecting all the files
+        "--cross-file-rename",
+        "--suggest-missing-includes",
+        -- to disable clangd injecting functions placeholders to nvim-cmp
+        "--function-arg-placeholders=false",
+      },
+    },
   },
   tsserver = {
     name = "typescript-language-server",

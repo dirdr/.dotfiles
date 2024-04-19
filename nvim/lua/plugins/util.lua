@@ -4,12 +4,16 @@ return {
     lazy = true,
   },
   {
+    "nvim-neotest/nvim-nio",
+  },
+  {
     "lervag/vimtex",
-    lazy = true,
-    config = function()
+    lazy = false,
+    init = function()
       vim.cmd("filetype plugin indent on")
       vim.cmd("syntax enable")
       vim.g.vimtex_view_method = "skim"
+      vim.g.vimtex_enabled = 1
     end,
   },
   -- manage tmux session within neovim

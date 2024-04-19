@@ -19,7 +19,10 @@ return {
             table.insert(tool_names, server.name)
           end
           for _, formatter in pairs(formatters) do
-            table.insert(tool_names, formatter.name)
+            -- TODO fix this crap
+            if formatter.name ~= "rustfmt" then
+              table.insert(tool_names, formatter.name)
+            end
           end
           --for _, adapter in pairs(adapters) do
           --  table.insert(tool_names, adapter.name)
@@ -44,7 +47,6 @@ return {
           border = "rounded",
         },
       })
-
       require("mason-lspconfig").setup()
     end,
   },

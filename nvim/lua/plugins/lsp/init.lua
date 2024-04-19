@@ -10,6 +10,9 @@ local function lspconfig_setup()
       vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
       vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, opts)
+      vim.keymap.set("n", "<leader>dc", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "<leader>de", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "<leader>i", vim.lsp.buf.implementation, opts)
 
       -- auto show diagnostic when cursor hold
       vim.api.nvim_create_autocmd("CursorHold", {
@@ -41,6 +44,7 @@ local function lspconfig_setup()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+  -- pass the config table of language_servers.lua into the lsp configuration
   local setup_server = function(server, config)
     if not config then
       return
@@ -85,34 +89,62 @@ return {
     end,
   },
   {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-      require("rust-tools").setup({
-        server = {
-          capabilities = capabilities,
-          on_attach = function(client, bufnr)
-            local opts = { noremap = true, silent = true }
-            -- Hover actionf
-            vim.keymap.set("n", "<Leader>h", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set(
-              "n",
-              "<Leader>a",
-              require("rust_tools").code_action_group.code_action_group,
-              { buffer = bufnr }
-            )
-            vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", opts) -- to format with null ls source
-            vim.api.nvim_buf_set_keymap(bufnr, "n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-          end,
-        },
-        tools = {
-          hover_actions = {
-            auto_focus = true,
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {
+      hint_prefix = "",
+      floating_window = false,
+      bind = true,
+    },
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
+    lazy = false, -- This plugin is already lazy
+    ft = { "rust" },
+    opts = {
+      server = {
+        on_attach = function(client, bufnr)
+          -- additional keymaps for rustaceanvim, `hover`, `code_actions`, `rename`
+          -- and others basic ones are handled inside the lsp_config() setup
+          local opts = { buffer = bufnr }
+          -- Open doc.rs for the symbol under the cursor
+          vim.keymap.set("n", "<leader>od", vim.cmd.RustLsp("openDocs"), opts)
+          -- Override default buf code_actions to use rust-analyzer grouped code actions
+          vim.keymap.set("n", "<leader>a", vim.cmd.RustLsp("codeActions"), opts)
+          -- no need to override hover :
+          -- y default, this plugin replaces Neovim's built-in hover handler with hover actions,
+          -- so you can also use vim.lsp.buf.hover().
+        end,
+        default_settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+              loadOutDirstFromCheck = true,
+              runBuildScripts = true,
+            },
+            checkOnSave = {
+              allFeature = true,
+              command = "clippy",
+              extraArgs = { "--no-deps" },
+            },
+            procMacro = {
+              enable = true,
+              ignored = {
+                ["async-trait"] = { "async_trait" },
+                ["napi-derive"] = { "napi" },
+                ["async-recursion"] = { "async_recursion" },
+              },
+            },
           },
         },
-      })
+      },
+    },
+    config = function(_, opts)
+      vim.g.rustaceanvim = vim.tbl_deep_extend("force", {}, opts or {})
     end,
   },
 }

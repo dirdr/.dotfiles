@@ -7,7 +7,7 @@ return {
         local to_register = to_register_wrap()
         table.insert(sources, to_register)
       end
-      require("none-ls").setup({
+      require("null-ls").setup({
         sources = sources,
       })
     end,

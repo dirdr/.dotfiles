@@ -17,9 +17,6 @@ M.config_finder = function(config_names, default_dir)
     local found_root = require("lspconfig").util.root_pattern(name)(vim.loop.cwd())
     if found_root then
       config_dir = found_root .. "/" .. name
-      if _G.IS_WINDOWS then
-        config_dir = string.gsub(config_dir, "/", "\\\\")
-      end
       return config_dir
     end
   end
@@ -28,9 +25,6 @@ M.config_finder = function(config_names, default_dir)
   for _, name in ipairs(config_names) do
     if vim.loop.fs_stat(default_dir .. name) then
       config_dir = default_dir .. name
-      if _G.IS_WINDOWS then
-        config_dir = string.gsub(config_dir, "/", "\\\\")
-      end
       return config_dir
     end
   end

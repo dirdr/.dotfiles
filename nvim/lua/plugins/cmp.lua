@@ -7,11 +7,12 @@ return {
       "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
       "hrsh7th/cmp-path", -- nvim-cmp source for path words
       "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
-      "saadparwaiz1/cmp_luasnip", -- nvim-cmp source for luasnip
       "hrsh7th/cmp-cmdline", -- nvim-cmp source for vim's cmdline
+      "saadparwaiz1/cmp_luasnip", -- nvim-cmp source for luasnip
       -- Snippet engine
       {
         "L3MON4D3/LuaSnip",
+        run = "make install_jsregexp",
         dependencies = "rafamadriz/friendly-snippets", -- Set of preconfigured snippets for different languages.
         config = function()
           local luasnip = require("luasnip")
@@ -274,7 +275,7 @@ return {
                 return cmp.select_prev_item()
               else
                 cmp.complete()
-                cmp.select_next_item()
+                cmp.select_prev_item()
                 return
               end
             end,

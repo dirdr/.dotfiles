@@ -12,6 +12,14 @@ return {
     lazy = true,
   },
   {
+    "morhetz/gruvbox",
+    lazy = false,
+    config = function()
+      vim.g.gruvbox_contrast_dark = "hard"
+      vim.cmd.colorscheme("gruvbox")
+    end,
+  },
+  {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
     config = function()
@@ -21,7 +29,7 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
-    lazy = false,
+    lazy = true,
     config = function()
       require("kanagawa").setup({
         keywordStyle = {
@@ -31,7 +39,7 @@ return {
           bold = false,
         },
       })
-      vim.cmd.colorscheme("kanagawa-wave")
+      --vim.cmd.colorscheme("kanagawa-wave")
     end,
   },
   {
