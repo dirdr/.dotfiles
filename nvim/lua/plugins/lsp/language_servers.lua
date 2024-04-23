@@ -20,6 +20,7 @@ return {
   },
   clangd = {
     name = "clangd",
+    disabled = false,
     config = {
       -- override defaults lsp configuration commands
       -- [source](https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua).
@@ -38,22 +39,28 @@ return {
     },
   },
   tsserver = {
+    disabled = false,
     name = "typescript-language-server",
   },
   cssls = {
+    disabled = false,
     name = "css-lsp",
   },
   jsonls = {
+    disabled = false,
     name = "json-lsp",
   },
   tailwindcss = {
+    disabled = true,
     name = "tailwindcss-language-server",
   },
   texlab = {
+    disabled = false,
     name = "texlab",
   },
   lua_ls = {
     name = "lua-language-server",
+    disabled = false,
     config = {
       settings = {
         Lua = {
@@ -76,5 +83,9 @@ return {
         },
       },
     },
+  },
+  eslint = {
+    disabled = false,
+    name = "eslint-lsp",
   },
 }

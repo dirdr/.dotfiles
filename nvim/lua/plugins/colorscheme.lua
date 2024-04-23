@@ -12,19 +12,14 @@ return {
     lazy = true,
   },
   {
-    "morhetz/gruvbox",
+    "ellisonleao/gruvbox.nvim",
     lazy = false,
     config = function()
-      vim.g.gruvbox_contrast_dark = "hard"
+      require("gruvbox").setup({
+        bold = false,
+        contrast = "hard",
+      })
       vim.cmd.colorscheme("gruvbox")
-    end,
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = true,
-    config = function()
-      require("gruvbox").setup({})
-      -- vim.cmd.colorscheme("gruvbox")
     end,
   },
   {

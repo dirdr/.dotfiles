@@ -4,46 +4,26 @@ local default_config_dir = vim.fn.stdpath("config") .. "/lua/plugins/formatting/
 -- See https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 -- for a list of available built-in sources
 return {
-  -- rustfmt = {
-  --   name = "rustfmt", -- for mason installer
-  --   disabled = false,
-  --   to_register_wrap = function()
-  --     return require("null-ls").builtins.formatting.rustfmt.with({
-  --       filetypes = { "rust" },
-  --       command = "rustup run stable rustfmt"
-  --     })
-  --   end,
-  -- },
-  prettier = {
-    name = "prettier",
+  -- prettierd over prettier for formatting speed,
+  -- need to actually test if there is a notable difference
+  prettierd = {
+    name = "prettierd",
     disabled = false,
     to_register_wrap = function()
       return require("null-ls").builtins.formatting.prettier.with({
-        filetypes = { "html", "css", "scss" },
-        extra_args = { "--print-width", "120" },
+        extra_args = {
+          "--config-path",
+          require("util").config_finder({
+            ".prettierrc",
+            ".prettierrc.json",
+            ".prettierrc.yaml",
+            ".prettierrc.yml",
+            ".prettierrc.toml",
+          }, default_config_dir),
+        },
       })
     end,
   },
-  -- dprint = {
-  --   name = "dprint",
-  --   disabled = false,
-  --   to_register_wrap = function()
-  --     return require("null-ls").builtins.formatting.dprint.with({
-  --       filetypes = {
-  --         "javascriptreact",
-  --         "typescript",
-  --         "typescriptreact",
-  --         "json",
-  --         "javascript",
-  --       },
-  --       -- check if project have dprint configuration
-  --       extra_args = {
-  --         "--config",
-  --         require("util").config_finder({ "dprint.json", ".dprint.json" }, default_config_dir),
-  --       },
-  --     })
-  --   end,
-  -- },
   stylua = {
     name = "stylua",
     disabled = false,
@@ -62,7 +42,7 @@ return {
     disabled = false,
     to_register_wrap = function()
       return require("null-ls").builtins.formatting.clang_format.with({
-        filetypes = { "cpp", "h" },
+        filetypes = { "cpp", "h", "c" },
         extra_args = {
           "--config-path",
           require("util").config_finder({ ".clang-format" }, default_config_dir),

@@ -47,7 +47,6 @@ return {
   {
     "jghauser/mkdir.nvim",
   },
-
   {
     "ThePrimeagen/vim-be-good",
   },

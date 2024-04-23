@@ -1,5 +1,10 @@
+-- format buffer,
+-- 1. check if autoformat is enabled
+-- 2. check if a null-ls formatter is attached to the buffer
+-- 3. use null-ls if avaible else use any other connected lsp that support formatting
 local formatting_buffer = function()
   local buf = vim.api.nvim_get_current_buf()
+  -- don't format if autoformat is disabled
   if require("plugins.formatting.autoformat").autoformat == false then
     return
   end
@@ -14,7 +19,7 @@ local formatting_buffer = function()
       if have_nls then
         return client.name == "null-ls"
       end
-      return false
+      return true
     end,
   })
 end
