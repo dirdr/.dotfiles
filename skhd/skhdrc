@@ -1,8 +1,15 @@
+# My personal skhd configuration for a azerty keyboard
+# `alt` is to manage the focus or to do common actions (lalt to use my ralt to execute keycode ~)
+#  `shift` modification key is when there is the idea of moving a window (into the current space or across spaces)
+
 # change window focus
 lalt - j : yabai -m window --focus south
 lalt - k : yabai -m window --focus north
 lalt - h : yabai -m window --focus west
 lalt - l : yabai -m window --focus east
+
+# Focus the first availables window in the spaces
+lalt - a : yabai -m window --focus first
 
 # swap window 
 shift + lalt - j : yabai -m window --swap south
@@ -16,33 +23,25 @@ shift + cmd  - k : yabai -m window --warp north
 shift + cmd - h : yabai -m window --warp west
 shift + cmd - l : yabai -m window --warp east
 
-# toggle window float and center
-lalt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+ctrl + lalt - h : yabai -m window --resize right:-20:0 2> /dev/null || yabai -m window --resize left:-20:0 2> /dev/null
+ctrl + lalt - j : yabai -m window --resize bottom:0:20 2> /dev/null || yabai -m window --resize top:0:20 2> /dev/null
+ctrl + lalt - k : yabai -m window --resize bottom:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 2> /dev/null
+ctrl + lalt - l : yabai -m window --resize right:20:0 2> /dev/null || yabai -m window --resize left:20:0 2> /dev/null
 
-# close a window
-lalt - x : yabai -m window --close
+ctrl + alt - l : yabai -m window --resize right:20:0
+ctrl + alt - h : yabai -m window --resize left:20:0
+ctrl + alt - j : yabai -m window --resize bottom:0:20
+ctrl + alt - k : yabai -m window --resize top:0:20
 
-# minimize a window
-lalt - m : yabai -m window --minimize
-
-# change focus between external displays (left and right)
-lalt - s: yabai -m display --focus west
-
-# rotate layout clockwise
-lalt - r : yabai -m space --rotate 270
-
-# flip along x-axis
-lalt - y : yabai -m space --mirror y-axis
-
-# flip along x-axis
-lalt - x : yabai -m space --mirror x-axis
-
-# maximize a window
-lalt - f : yabai -m window --toggle zoom-fullscreen
-
-# rebalance out tree of windows 
-lalt - e : yabai -m space --balance
-
+lalt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2 # toggle window float and center
+lalt - c : yabai -m window --close # close a window (red button)
+lalt - m : yabai -m window --minimize # minimize a window (yellow button)
+lalt - s: yabai -m display --focus west # change the focus between external displays
+lalt - r : yabai -m space --rotate 270 # rotate layout clockwise
+lalt - y : yabai -m space --mirror y-axis # flip along y-axis
+lalt - x : yabai -m space --mirror x-axis # flip along y-axis
+lalt - f : yabai -m window --toggle zoom-fullscreen # maximize a window
+lalt - e : yabai -m space --balance # rebalance out tree of windows
 
 # move window to display left and right
 shift + lalt - s : yabai -m window --display west; yabai -m display --focus west;
@@ -75,7 +74,7 @@ lalt - 0x1C : yabai -m space --focus 8
 lalt - 0x19 : yabai -m space --focus 9
 lalt - 0x1D  : yabai -m space --focus 10
 
-# move window to previous and next space
+# move window between spaces
 lalt + shift - 0x12: yabai -m window --space 1
 lalt + shift - 0x13: yabai -m window --space 2
 lalt + shift - 0x14: yabai -m window --space 3

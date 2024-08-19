@@ -1,10 +1,12 @@
 return {
   {
     "sainnhe/gruvbox-material",
-    lazy = true,
+    lazy = false,
     config = function()
-      vim.g.gruvbox_material_enable_italic = 1
-      -- vim.cmd.colorscheme("gruvbox-material")
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_better_performance = 1
+      vim.g.gruvbox_material_enable_italic = true
+      vim.cmd.colorscheme("gruvbox-material")
     end,
   },
   {
@@ -13,13 +15,15 @@ return {
   },
   {
     "ellisonleao/gruvbox.nvim",
-    lazy = false,
+    lazy = true,
     config = function()
       require("gruvbox").setup({
         bold = false,
         contrast = "hard",
       })
-      vim.cmd.colorscheme("gruvbox")
+      -- vim.cmd.colorscheme("gruvbox")
+      -- temp fix
+      -- vim.api.nvim_set_hl(0, "Delimiter", { link = "GruvboxOrange" })
     end,
   },
   {

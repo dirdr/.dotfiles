@@ -2,7 +2,7 @@ local function lspconfig_setup()
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
       local bufnr = args.buf
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
+      local _ = vim.lsp.get_client_by_id(args.data.client_id)
 
       local opts = { buffer = bufnr }
 
@@ -15,29 +15,29 @@ local function lspconfig_setup()
       vim.keymap.set("n", "<leader>i", vim.lsp.buf.implementation, opts)
 
       -- auto show diagnostic when cursor hold
-      vim.api.nvim_create_autocmd("CursorHold", {
-        buffer = bufnr,
-        callback = function()
-          local float_opts = {
-            focusable = false,
-            close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-          }
-
-          if not vim.b.diagnostics_pos then
-            vim.b.diagnostics_pos = { nil, nil }
-          end
-
-          local cursor_pos = vim.api.nvim_win_get_cursor(0)
-          if
-              (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
-              and #vim.diagnostic.get() > 0
-          then
-            vim.diagnostic.open_float(nil, float_opts)
-          end
-
-          vim.b.diagnostics_pos = cursor_pos
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("CursorHold", {
+      --   buffer = bufnr,
+      --   callback = function()
+      --     local float_opts = {
+      --       focusable = false,
+      --       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      --     }
+      --
+      --     if not vim.b.diagnostics_pos then
+      --       vim.b.diagnostics_pos = { nil, nil }
+      --     end
+      --
+      --     local cursor_pos = vim.api.nvim_win_get_cursor(0)
+      --     if
+      --       (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
+      --       and #vim.diagnostic.get() > 0
+      --     then
+      --       vim.diagnostic.open_float(nil, float_opts)
+      --     end
+      --
+      --     vim.b.diagnostics_pos = cursor_pos
+      --   end,
+      -- })
     end,
   })
 
@@ -89,23 +89,31 @@ return {
     end,
   },
   {
-    "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
-    opts = {
-      hint_prefix = "",
-      floating_window = false,
-      bind = true,
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "mfussenegger/nvim-dap",
+      "mfussenegger/nvim-dap-python",
+      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
     },
-    config = function(_, opts)
-      require("lsp_signature").setup(opts)
+    lazy = false,
+    branch = "regexp", -- This is the regexp branch, use this for the new version
+    config = function()
+      require("venv-selector").setup()
     end,
+    keys = {
+      { "<leader>v", "<cmd>VenvSelect<cr>" },
+    },
   },
   {
     "mrcjkb/rustaceanvim",
     version = "^4", -- Recommended
-    lazy = false,   -- This plugin is already lazy
+    lazy = false, -- This plugin is already lazy
     ft = { "rust" },
     opts = {
+      inlay_hints = {
+        enabled = true,
+      },
       server = {
         on_attach = function(client, bufnr)
           -- additional keymaps for rustaceanvim, `hover`, `code_actions`, `rename`
@@ -114,7 +122,7 @@ return {
           -- Open doc.rs for the symbol under the cursor
           vim.keymap.set("n", "<leader>od", vim.cmd.RustLsp("openDocs"), opts)
           -- Override default buf code_actions to use rust-analyzer grouped code actions
-          vim.keymap.set("n", "<leader>a", vim.cmd.RustLsp("codeActions"), opts)
+          --vim.keymap.set("n", "<leader>a", vim.cmd.RustLsp("codeAction"), opts)
           -- no need to override hover :
           -- y default, this plugin replaces Neovim's built-in hover handler with hover actions,
           -- so you can also use vim.lsp.buf.hover().

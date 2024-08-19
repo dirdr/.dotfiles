@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    -- colorscheme breaking chnages for highlight group, waiting for update
     build = ":TSUpdate",
     event = "BufEnter",
     dependencies = {
@@ -41,9 +42,7 @@ return {
     {
       "windwp/nvim-autopairs",
       event = "InsertEnter",
-      config = function()
-        require("nvim-autopairs").setup()
-      end,
+      config = true,
     },
   },
 }

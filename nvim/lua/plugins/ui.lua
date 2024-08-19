@@ -93,6 +93,16 @@ return {
         ),
         dashboard.button("leader fg", "Live grep", "<cmd>lua require('telescope.builtin').live_grep()<cr>"),
       }
+      dashboard.section.header.val = {
+        "                                                     ",
+        "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+        "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+        "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+        "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+        "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+        "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+        "                                                     ",
+      }
       require("alpha").setup(dashboard.opts)
     end,
   },
@@ -105,22 +115,22 @@ return {
     },
   },
   {
-    "utilyre/barbecue.nvim",
-    name = "barbecue",
-    version = "*",
+    "romgrk/barbar.nvim",
     dependencies = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons",
+      "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+      "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
     },
-    opts = {},
-  },
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("bufferline").setup()
+    init = function()
+      vim.g.barbar_auto_setup = false
     end,
+    opts = {
+      animation = false,
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    version = "^1.0.0", -- optional: only update when a new 1.x version is released
   },
   {
     "ziontee113/icon-picker.nvim",
@@ -130,5 +140,4 @@ return {
       })
     end,
   },
-  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 }

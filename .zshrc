@@ -1,5 +1,9 @@
-neofetch
+if [ -z "$TMUX" ]
+then
+    tmux attach -t TMUX || tmux new -s TMUX
+fi
 
+fastfetch
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -114,3 +118,28 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+if alias cd &>/dev/null; then
+  unalias cd
+fi
+
+# git repository greeter
+last_repository=
+check_directory_for_new_repository() {
+	current_repository=$(git rev-parse --show-toplevel 2> /dev/null)
+	
+	if [ "$current_repository" ] && \
+	   [ "$current_repository" != "$last_repository" ]; then
+		onefetch
+	fi
+	last_repository=$current_repository
+}
+cd() {
+	builtin cd "$@"
+	check_directory_for_new_repository
+}
+
+export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/adrienpelfresne/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"
