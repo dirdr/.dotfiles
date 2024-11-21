@@ -6,7 +6,6 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "rcarriga/nvim-notify",
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
@@ -87,7 +86,7 @@ return {
     hooks = {
       ["question_enter"] = {
         function()
-          -- os.execute "sleep 1"
+          os.execute("sleep 1")
           local file_extension = vim.fn.expand("%:e")
           if file_extension == "rs" then
             local bash_script = tostring(vim.fn.stdpath("data") .. "/leetcode/rust_init.sh")
