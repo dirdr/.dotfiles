@@ -1,0 +1,4 @@
+theme = gruvbox-material
+font-size = 18
+term = xterm-256color
+
