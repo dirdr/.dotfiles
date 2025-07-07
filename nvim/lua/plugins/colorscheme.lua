@@ -11,6 +11,10 @@ return {
     "RRethy/base16-nvim",
   },
   {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "gruvbox-material",
