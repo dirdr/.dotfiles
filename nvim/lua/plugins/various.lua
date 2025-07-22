@@ -5,4 +5,9 @@ return {
     opts = {},
     cmd = { "Typr", "TyprStats" },
   },
+  {
+    "vyfor/cord.nvim",
+    build = ":Cord update",
+    -- opts = {}
+  },
 }
