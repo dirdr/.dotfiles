@@ -8,9 +8,8 @@ return {
         workspaces = {
           -- opening workspace with keymap open the folder inside workspace
           -- selecting one create a new tmux session based on this folder
-          { name = "personal", path = "~/dev/personal", keymap = { "<leader>tp" } },
-          { name = "school - ESIEE", path = "~/dev/ESIEE", keymap = { "<leader>te" } },
-          { name = "school - FIB", path = "~/dev/fib", keymap = { "<leader>tf" } },
+          { name = "personal", path = "~/dev/personal", keymap = { "<leader>tpe" } },
+          { name = "professional", path = "~/dev/professional/", keymap = { "<leader>tpr" } },
         },
       })
       local workspace = require("workspace")

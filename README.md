@@ -1,8 +1,9 @@
 # MacOS dotfiles
+
 Contains configuration files for all my code or workflow related tools, for MacOS
 
 ## Structure
-- alacritty : (not using anymore) terminal
+
 - ghostty : terminal
 - nvim : code editor
 - skhd : keybinding daemon
