@@ -11,6 +11,18 @@ return {
     "RRethy/base16-nvim",
   },
   {
+    "rebelot/kanagawa.nvim",
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+  },
+  {
+    "EdenEast/nightfox.nvim",
+  },
+  {
+    "shaunsingh/nord.nvim",
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "gruvbox-material",
