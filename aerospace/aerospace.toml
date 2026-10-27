@@ -1,0 +1,150 @@
+# AZERTY: bindings match physical keys (qwerty preset).
+# Label → config name: a→q, q→a, z→w, w→z, m→semicolon, ,→m, ;→comma,
+# :→period, !→slash, ù→quote, )→minus. Other letters and digits 1-0: unchanged.
+config-version = 2
+
+start-at-login = true
+auto-reload-config = true
+
+after-startup-command = []
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+# mouse follows focused monitor
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+automatically-unhide-macos-hidden-apps = false
+
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+on-mode-changed = []
+
+focus-follows-mouse.enabled = false
+
+key-mapping.preset = 'qwerty'
+
+gaps.inner.horizontal = 0
+gaps.inner.vertical =   0
+gaps.outer.left =       0
+gaps.outer.bottom =     0
+gaps.outer.top =        0
+gaps.outer.right =      0
+
+# [workspace-to-monitor-force-assignment]
+#     9 = 'secondary'
+#     10 = 'main'
+
+[mode.main.binding]
+
+    # focus
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+    # AZERTY 'a': cycle windows in reading order
+    alt-q = 'focus --wrap-around dfs-next'
+
+    # swap positions (tree unchanged, focus stays)
+    alt-shift-h = 'swap left'
+    alt-shift-j = 'swap down'
+    alt-shift-k = 'swap up'
+    alt-shift-l = 'swap right'
+
+    # move windows (focus follows, can restructure the tree)
+    cmd-shift-h = 'move left'
+    cmd-shift-j = 'move down'
+    cmd-shift-k = 'move up'
+    cmd-shift-l = 'move right'
+
+    # resize
+    ctrl-alt-h = 'resize width -20'
+    ctrl-alt-j = 'resize height +20'
+    ctrl-alt-k = 'resize height -20'
+    ctrl-alt-l = 'resize width +20'
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
+
+    # window actions
+    alt-t = 'layout floating tiling'
+    alt-c = 'close'
+    # AZERTY 'm' key
+    alt-semicolon = 'macos-native-minimize'
+    alt-f = 'fullscreen' # fake fullscreen, not macOS native
+    alt-e = 'balance-sizes'
+
+    # displays
+    alt-s = 'focus-monitor --wrap-around left'
+    # send window to other display + follow
+    alt-shift-s = 'move-node-to-monitor --focus-follows-window left'
+    alt-shift-g = 'move-node-to-monitor --focus-follows-window right'
+
+    # layouts
+    alt-r = 'layout tiles horizontal vertical'
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-comma = 'layout accordion horizontal vertical'
+
+    # launchers (exec-and-forget must be the whole binding; sequencing in bash)
+    alt-enter = 'exec-and-forget aerospace workspace 1 && open -na Ghostty'
+    alt-b = 'exec-and-forget aerospace workspace 2 && open -na Firefox'
+    alt-o = 'exec-and-forget aerospace workspace 3 && open -na Obsidian'
+    # alt-shift-o = 'exec-and-forget aerospace workspace 4 && open -na "Microsoft Outlook"'
+    # alt-shift-t = 'exec-and-forget aerospace workspace 5 && open -na "Microsoft Teams"'
+
+    # cycle non-empty workspaces on the focused monitor
+    alt-i = 'list-workspaces --monitor focused --empty no | workspace --stdin --wrap-around next'
+    alt-u = 'list-workspaces --monitor focused --empty no | workspace --stdin --wrap-around prev'
+
+    # suspend window management; re-enable via tray icon
+    alt-esc = 'enable toggle'
+
+    # workspaces
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'
+
+    # move window to workspace
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-8 = 'move-node-to-workspace 8'
+    alt-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-0 = 'move-node-to-workspace 10'
+
+    alt-n = 'workspace --wrap-around next'
+    alt-shift-n = 'move-node-to-workspace --focus-follows-window next'
+
+    alt-tab = 'workspace-back-and-forth'
+    # move current workspace to the other monitor
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    # AZERTY: alt + shift + 'm' key
+    alt-shift-semicolon = 'mode service'
+
+# service mode: tree surgery / reset
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main']
+    f = ['layout floating tiling', 'mode main']
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
