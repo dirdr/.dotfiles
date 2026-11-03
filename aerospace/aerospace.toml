@@ -21,7 +21,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = false
 
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+persistent-workspaces = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 on-mode-changed = []
 
@@ -36,13 +36,14 @@ gaps.outer.bottom =     0
 gaps.outer.top =        0
 gaps.outer.right =      0
 
-# [workspace-to-monitor-force-assignment]
-#     9 = 'secondary'
-#     10 = 'main'
+[workspace-to-monitor-force-assignment]
+    6 = 'secondary'
+    7 = 'secondary'
+    8 = 'secondary'
+    9 = 'secondary'
 
 [mode.main.binding]
 
-    # focus
     alt-h = 'focus left'
     alt-j = 'focus down'
     alt-k = 'focus up'
@@ -51,10 +52,11 @@ gaps.outer.right =      0
     alt-q = 'focus --wrap-around dfs-next'
 
     # swap positions (tree unchanged, focus stays)
+    # alt-shift-right (not alt-shift-l): Option+Shift+L types '|' on AZERTY
     alt-shift-h = 'swap left'
     alt-shift-j = 'swap down'
     alt-shift-k = 'swap up'
-    alt-shift-l = 'swap right'
+    alt-shift-right = 'swap right'
 
     # move windows (focus follows, can restructure the tree)
     cmd-shift-h = 'move left'
@@ -67,7 +69,8 @@ gaps.outer.right =      0
     ctrl-alt-j = 'resize height +20'
     ctrl-alt-k = 'resize height -20'
     ctrl-alt-l = 'resize width +20'
-    alt-minus = 'resize smart -50'
+    # ctrl-alt (not plain alt): Option + ')' key types '}' on AZERTY
+    ctrl-alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
 
     # window actions
@@ -87,12 +90,14 @@ gaps.outer.right =      0
     # layouts
     alt-r = 'layout tiles horizontal vertical'
     alt-slash = 'layout tiles horizontal vertical'
-    alt-comma = 'layout accordion horizontal vertical'
+    # was alt-comma: Option+; types '…' on AZERTY
+    alt-w = 'layout accordion horizontal vertical'
 
     # launchers (exec-and-forget must be the whole binding; sequencing in bash)
     alt-enter = 'exec-and-forget aerospace workspace 1 && open -na Ghostty'
     alt-b = 'exec-and-forget aerospace workspace 2 && open -na Firefox'
-    alt-o = 'exec-and-forget aerospace workspace 3 && open -na Obsidian'
+    # was alt-o: Option+O types 'œ' on AZERTY
+    alt-p = 'exec-and-forget aerospace workspace 3 && open -na Obsidian'
     # alt-shift-o = 'exec-and-forget aerospace workspace 4 && open -na "Microsoft Outlook"'
     # alt-shift-t = 'exec-and-forget aerospace workspace 5 && open -na "Microsoft Teams"'
 
@@ -100,35 +105,35 @@ gaps.outer.right =      0
     alt-i = 'list-workspaces --monitor focused --empty no | workspace --stdin --wrap-around next'
     alt-u = 'list-workspaces --monitor focused --empty no | workspace --stdin --wrap-around prev'
 
-    # suspend window management; re-enable via tray icon
+    # suspend window management
     alt-esc = 'enable toggle'
 
-    # workspaces
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
     alt-4 = 'workspace 4'
-    alt-5 = 'workspace 5'
+    # was alt-5: Option+5 types '{' on AZERTY
+    alt-x = 'workspace 5'
     alt-6 = 'workspace 6'
     alt-7 = 'workspace 7'
     alt-8 = 'workspace 8'
     alt-9 = 'workspace 9'
-    alt-0 = 'workspace 10'
+    alt-0 = 'workspace 0'
 
     # move window to workspace
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
     alt-shift-3 = 'move-node-to-workspace 3'
     alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
+    # was alt-shift-5: Option+Shift+5 types '[' on AZERTY
+    alt-shift-x = 'move-node-to-workspace 5'
     alt-shift-6 = 'move-node-to-workspace 6'
     alt-shift-7 = 'move-node-to-workspace 7'
     alt-shift-8 = 'move-node-to-workspace 8'
     alt-shift-9 = 'move-node-to-workspace 9'
-    alt-shift-0 = 'move-node-to-workspace 10'
+    alt-shift-0 = 'move-node-to-workspace 0'
 
-    alt-n = 'workspace --wrap-around next'
-    alt-shift-n = 'move-node-to-workspace --focus-follows-window next'
+    # Cycling is covered by alt-i/alt-u and alt-1..0.
 
     alt-tab = 'workspace-back-and-forth'
     # move current workspace to the other monitor
@@ -147,4 +152,4 @@ gaps.outer.right =      0
     alt-shift-h = ['join-with left', 'mode main']
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
-    alt-shift-l = ['join-with right', 'mode main']
+    alt-shift-right = ['join-with right', 'mode main']
