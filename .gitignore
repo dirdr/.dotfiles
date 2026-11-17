@@ -8,5 +8,7 @@
 !/ghostty/
 !/nvim/
 !/tmux/
+!.nvim.png
+!.welcome.png
 tmux/plugins/
 .DS_Store

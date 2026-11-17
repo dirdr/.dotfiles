@@ -2,6 +2,10 @@
 
 My personal dotfiles for MacOs dev!
 
+![welcome](./welcome.png)
+
+![neovim](./nvim.png)
+
 ## What I use
 
 - aerospace : window manager
