@@ -5,15 +5,17 @@ fi
 
 fastfetch
 
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -33,8 +35,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# Uncomment the following line to change how often to auto-update (in days).
+# Uncomment the following line to change the frequency the auto-updater is run (in days).
 # zstyle ':omz:update' frequency 13
+
+# Uncomment the following line to set how old an update must be before it's applied, manually or via the auto-updater (in days).
+# zstyle ':omz:update' cooldown 10
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -77,10 +82,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-alias vim="nvim"
-alias rm="rm -iv"
-alias bup="brew update && brew upgrade && brew cleanup"
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -94,50 +95,52 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-if alias cd &>/dev/null; then
-  unalias cd
-fi
-
-# git repository greeter
-last_repository=
-check_directory_for_new_repository() {
-	current_repository=$(git rev-parse --show-toplevel 2> /dev/null)
-	if [ "$current_repository" ] && \
-	   [ "$current_repository" != "$last_repository" ]; then
-		onefetch
-	fi
-	last_repository=$current_repository
-}
-cd() {
-	builtin cd "$@"
-	check_directory_for_new_repository
-}
-
-export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/adrienpelfresne/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# # ~/.zshrc
 
 eval "$(starship init zsh)"
+
+alias vim="nvim"
+alias rm="rm -iv"
+alias bup="brew update && brew upgrade && brew cleanup"
+alias oc="opencode"
+alias as="aerospace"
+alias k="kubectl"
+
+export GOPRIVATE=gitlab.tooling.cloudgouv-eu-west-1.numspot.internal
+export NODE_TLS_REJECT_UNAUTHORIZED=0
+
+source <(kubectl completion zsh)
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+eval "$(zoxide init zsh)"
+
+# Fix "Inappropriate ioctl for device" when gpg signs commits
+gpg_tty=$(tty 2>/dev/null) && export GPG_TTY="$gpg_tty"
+
+# pnpm
+export PNPM_HOME='/Users/adrien.pelfresnenumspot.com/Library/pnpm'
+case ":$PATH:" in
+  ":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+# Go binaries (gofumpt, gci, etc.)
+export PATH="$HOME/go/bin:$PATH"

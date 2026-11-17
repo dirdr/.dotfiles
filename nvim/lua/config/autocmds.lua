@@ -8,3 +8,38 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.formatoptions:remove({ "r", "o" })
   end,
 })
+
+-- No LSP semantic tokens: keeps variables in the plain foreground color
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    vim.opt_local.expandtab = false
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.listchars = { tab = "  ", trail = "•", nbsp = "¬" }
+  end,
+})
+
+local ts_highlight_fts = { "helm", "terraform", "hcl", "yaml" }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = ts_highlight_fts,
+  callback = function(ev)
+    pcall(vim.treesitter.start, ev.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, { focus = false })
+  end,
+})

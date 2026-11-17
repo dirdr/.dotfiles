@@ -1,5 +1,4 @@
 return {
-  -- manage tmux session within neovim
   {
     "sanathks/workspace.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -8,8 +7,8 @@ return {
         workspaces = {
           -- opening workspace with keymap open the folder inside workspace
           -- selecting one create a new tmux session based on this folder
-          { name = "personal", path = "~/dev/personal", keymap = { "<leader>tpe" } },
-          { name = "professional", path = "~/dev/professional/", keymap = { "<leader>tpr" } },
+          { name = "NUMSPOT", path = "~/dev/sources_numspot/", keymap = { "<leader>tpn" } },
+          { name = "PERS", path = "~/dev/sources_pers", keymap = { "<leader>tpp" } },
         },
       })
       local workspace = require("workspace")

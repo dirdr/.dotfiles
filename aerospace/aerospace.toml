@@ -153,3 +153,10 @@ gaps.outer.right =      0
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-right = ['join-with right', 'mode main']
+
+# Teams notification popups: float them (no tiling interaction)
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+if.window-title-regex-substring = 'Notification'
+run = 'layout floating'
+
