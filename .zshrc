@@ -123,27 +123,31 @@ alias oc="opencode"
 alias as="aerospace"
 alias k="kubectl"
 
-export GOPRIVATE=gitlab.tooling.cloudgouv-eu-west-1.numspot.internal
-export NODE_TLS_REJECT_UNAUTHORIZED=0
+if [[ "$HOME" == *numspot* ]]; then
+  export GOPRIVATE=gitlab.tooling.cloudgouv-eu-west-1.numspot.internal
+  export NODE_TLS_REJECT_UNAUTHORIZED=0
+fi
 
-source <(kubectl completion zsh)
+command -v kubectl >/dev/null && source <(kubectl completion zsh)
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-eval "$(zoxide init zsh)"
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
-# Fix "Inappropriate ioctl for device" when gpg signs commits
 gpg_tty=$(tty 2>/dev/null) && export GPG_TTY="$gpg_tty"
 
-# pnpm
-export PNPM_HOME='/Users/adrien.pelfresnenumspot.com/Library/pnpm'
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
-  ":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
-# Go binaries (gofumpt, gci, etc.)
-export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
 
-# dotfiles sync
+for f in /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+         /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh; do
+  [[ -r "$f" ]] && source "$f"
+done
+
 alias dotfiles-sync="~/.config/dotfiles-sync.sh"
+
+[[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

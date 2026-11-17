@@ -1,5 +1,12 @@
-context7/
+/*
+!/.gitignore
+!/README.md
+!/.zshrc
+!/dotfiles-sync.sh
+!/starship.toml
+!/aerospace/
+!/ghostty/
+!/nvim/
+!/tmux/
 tmux/plugins/
-opencode/
-raycast/
 .DS_Store

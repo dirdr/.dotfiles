@@ -1,18 +1,27 @@
 #!/bin/sh
-# Two-way sync of ~/.config dotfiles with GitHub
-set -e
+set -eu
 
-DIR="$HOME/.config"
-cd "$DIR"
+cd "$HOME/.config"
 
-git pull --rebase --autostash >/dev/null 2>&1 || true
+if [ -d .git/rebase-merge ] || [ -d .git/rebase-apply ]; then
+    echo "❌ a rebase is in progress in ~/.config: resolve it, then rerun" >&2
+    exit 1
+fi
+
 git add -A
-
 if ! git diff --cached --quiet; then
-    git commit -m "dotfiles sync $(date '+%Y-%m-%d %H:%M') @ $(hostname -s)"
-    git push
+    git commit -q -m "chore(sync): $(date '+%Y-%m-%d %H:%M') @ $(hostname -s)"
+    echo "📝 committed local changes"
+fi
+
+if ! git pull -q --rebase; then
+    echo "❌ conflict while pulling: fix the files, 'git add' them, 'git rebase --continue', then rerun" >&2
+    exit 1
+fi
+
+if [ -n "$(git log '@{u}..' --oneline)" ]; then
+    git push -q
     echo "✅ dotfiles synced & pushed"
 else
-    git push >/dev/null 2>&1 || true
-    echo "✅ dotfiles up to date (nothing to commit)"
+    echo "✅ dotfiles up to date"
 fi
