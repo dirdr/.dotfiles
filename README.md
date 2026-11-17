@@ -1,8 +1,8 @@
 # MacOS dotfiles
 
-`~/.config` is this repository on every machine. A whitelist `.gitignore` tracks only the entries below; everything else in `~/.config` stays local.
+My personal dotfiles for MacOs dev!
 
-## Structure
+## What I use
 
 - aerospace : window manager
 - ghostty : terminal
@@ -15,7 +15,7 @@ Machine-specific shell config goes in `~/.zshrc.local` (untracked).
 
 ## Sync
 
-Run `dotfiles-sync` on any machine: it commits local changes, rebases on the remote, then pushes.
+Run `dotfiles-sync`
 
 To track a new config directory, add `!/<name>/` to `.gitignore`.
 
