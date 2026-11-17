@@ -144,3 +144,6 @@ esac
 
 # Go binaries (gofumpt, gci, etc.)
 export PATH="$HOME/go/bin:$PATH"
+
+# dotfiles sync
+alias dotfiles-sync="~/.config/dotfiles-sync.sh"
